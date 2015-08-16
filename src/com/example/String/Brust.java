@@ -5,7 +5,7 @@ package com.example.String;
  */
 public class Brust {
 
-    public static int search(String pat,String txt){
+    public static int search1(String pat,String txt){
 
         int n = pat.length() ;
         int m = txt.length() ;
@@ -19,10 +19,29 @@ public class Brust {
         return m;
     }
 
+    public static int search2(String pat,String txt){
+
+        int n = pat.length() ;
+        int m = txt.length() ;
+        int i ,j ;
+        for (i = 0,j = 0;i < m && j < n;i++){
+            if (pat.charAt(j) == txt.charAt(i))
+                j++;
+            else {
+                i -= j ;
+                j = 0 ;
+            }
+
+        }
+        if(j == n) return i - n ;
+        else return m ;
+    }
+
     public static void main(String[] args) {
         String a = "fsfdsffsdfdsfdsggwrgbvysghet" ;
         String b = "et";
-        int l = search(b,a) ;
-        System.out.println(l);
+        int l1 = search1(b,a) ;
+        int l2 = search2(b,a) ;
+        System.out.println(l1+" "+l2);
     }
 }
